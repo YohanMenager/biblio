@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Classes custom */
+@layer components {
+    .navbar {
+        @apply fixed left-0 flex h-screen w-48 flex-col bg-gray-700 shadow-lg;
+    }
+
+    .navbar-item {
+        @apply text-xl text-left text-white m-4 hover:underline;
+    }
+}
