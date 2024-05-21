@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Abonnement;
+use App\Models\Type_abonnement;
+use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 
 class AbonnementController extends Controller
@@ -12,7 +14,8 @@ class AbonnementController extends Controller
      */
     public function index()
     {
-        //
+        $abonnements = Abonnement::all();
+        return view('admin.abonnements.index', compact('abonnements'));
     }
 
     /**
@@ -20,15 +23,26 @@ class AbonnementController extends Controller
      */
     public function create()
     {
-        //
+        $type_abonnements = Type_abonnement::all();
+        $utilisateurs = Utilisateur::all();
+        return view('admin.abonnements.create', compact('type_abonnements', 'utilisateurs'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        // Validation des données de la requête
+        $request->validate([
+            'id_type_abonnement' => 'required|max:255',
+            'id_utilisateur' => 'required|max:255',
+            'date_debut' => 'required|max:255',
+            'date_fin' => 'required|max:255'
+        ]);
+
+        Abonnement::create($request->all());
+        // Redirection avec un message de succès
+        return redirect()->route('abonnements.index')
+                        ->with('success', 'Abonnement créé avec succès.');
+
     }
 
     /**
@@ -36,7 +50,7 @@ class AbonnementController extends Controller
      */
     public function show(Abonnement $abonnement)
     {
-        //
+        return view('admin.abonnements.show', compact('abonnement'));
     }
 
     /**
@@ -44,7 +58,9 @@ class AbonnementController extends Controller
      */
     public function edit(Abonnement $abonnement)
     {
-        //
+        $type_abonnements = Type_abonnement::all();
+        $utilisateurs = Utilisateur::all();
+        return view('admin.abonnements.edit', compact('abonnement', 'type_abonnements', 'utilisateurs'));
     }
 
     /**
@@ -52,7 +68,16 @@ class AbonnementController extends Controller
      */
     public function update(Request $request, Abonnement $abonnement)
     {
-        //
+        $request->validate([
+            'id_type_abonnement' => 'required|max:255',
+            'id_utilisateur' => 'required|max:255',
+            'date_debut' => 'required|max:255',
+            'date_fin' => 'required|max:255'
+        ]);
+
+        $abonnement->update($request->all());
+        return redirect()->route('abonnements.index')
+        ->with('success', 'Abonnement updated successfully.');
     }
 
     /**
@@ -60,6 +85,8 @@ class AbonnementController extends Controller
      */
     public function destroy(Abonnement $abonnement)
     {
-        //
+        $abonnement->delete();
+        return redirect()->route('abonnements.index')
+          ->with('success', 'Abonnement deleted successfully');
     }
 }

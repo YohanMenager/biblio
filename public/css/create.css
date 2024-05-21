@@ -1,0 +1,64 @@
+@keyframes fadeOut {
+    0% {opacity: 1;}
+    100%{opacity: 0;}
+}
+.fade-out {
+    animation: fadeOut 5s;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+.form-container {
+    width: 450px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.form-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+.form-container input[type="text"],
+.form-container input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.form-container input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.form-container input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+.back-button {
+    display:inline-block;
+    padding: 7px 10px;
+    background-color: #3f5e80;
+    text-decoration:none;
+    color: #fff;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.back-button:hover {
+    background-color: #861726;
+    color: #fff;
+    text-decoration:none;
+
+  }

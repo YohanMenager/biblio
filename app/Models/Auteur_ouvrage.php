@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Auteur_ouvrage extends Model
 {
-    protected $table='ouvrage_auteurs';
-    protected $primaryKey='id_auteur';
+    protected $table='auteur_ouvrages';
+    protected $primaryKey='id_auteurouvrage';
     public $timestamps = false;
     //public $incrementing = false;
     protected $fillable=[

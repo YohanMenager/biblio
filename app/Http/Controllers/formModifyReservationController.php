@@ -22,7 +22,7 @@ class formModifyReservationController extends Controller
         $ouvrages = Ouvrage::all();
 
         //affichage de la vue.
-        return view ("Reservations/formModifyReservation", compact("users"), compact("ouvrages"))->with("reservation", $reservation);
+        return view ("admin.Reservations.formModifyReservation", compact("users"), compact("ouvrages"))->with("reservation", $reservation);
     }
 
 

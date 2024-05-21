@@ -12,7 +12,8 @@ class EmpruntController extends Controller
      */
     public function index()
     {
-        //
+        $emprunts=Emprunt::all();
+        return view('Emprunts.index', compact('emprunts'));
     }
 
     /**
@@ -20,7 +21,7 @@ class EmpruntController extends Controller
      */
     public function create()
     {
-        //
+        return view('Emprunts.create');
     }
 
     /**
@@ -28,7 +29,17 @@ class EmpruntController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newEmprunt = $request->validate([
+            'livre' => 'required',
+            'utilisateur' => 'required',
+            'date_emprunt' => 'required',
+            'date_retour_prevue' => 'required',
+            'date_retour_reel'  => 'required'
+        ]);
+        
+        Emprunt::create($newEmprunt)->save();
+
+        return redirect()->route('emprunts.index');
     }
 
     /**
@@ -36,7 +47,7 @@ class EmpruntController extends Controller
      */
     public function show(Emprunt $emprunt)
     {
-        //
+        return view('Emprunts.show', compact('emprunt'));
     }
 
     /**
@@ -44,7 +55,7 @@ class EmpruntController extends Controller
      */
     public function edit(Emprunt $emprunt)
     {
-        //
+        return view('Emprunts.edit', compact('emprunt'));
     }
 
     /**
@@ -52,7 +63,17 @@ class EmpruntController extends Controller
      */
     public function update(Request $request, Emprunt $emprunt)
     {
-        //
+        $empruntUpdate = $request->validate([
+            'livre' => 'required',
+            'utilisateur' => 'required',
+            'date_emprunt' => 'required',
+            'date_retour_prevu' => 'required',
+            'date_retour_reel'  => 'required'
+        ]);
+        
+        $emprunt->update($empruntUpdate);
+
+        return redirect()->route('emprunts.index');
     }
 
     /**
@@ -60,6 +81,6 @@ class EmpruntController extends Controller
      */
     public function destroy(Emprunt $emprunt)
     {
-        //
+        $emprunt->delete();
     }
 }

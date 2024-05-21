@@ -1,0 +1,101 @@
+
+    body {
+        display: flex;
+        flex-direction: column;
+        height: 100vh; /* Ensure the container takes up the full viewport height */
+        margin: 0; /* Remove default margin */
+    }
+
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+    /* Style général pour la table */
+    table {
+        width: 90%; /* Adjust the table width as needed */
+      
+        margin-top: 25px;
+    }
+
+    /* Style pour les en-têtes de table */
+    th {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        text-align: left;
+    }
+
+    /* Style pour les cellules de la table */
+    td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    .table-container {
+        flex-grow: 1; /* This will make the table container take up the remaining space */
+        display: flex;
+        flex-direction: column; /* Stack table and paginator vertically */
+        justify-content: center;
+        align-items: left; /* Center the table horizontally */
+       
+    }
+    
+    @media (max-width: 400px) {
+        td, th {
+            padding: 12px 16px; /* Increase padding */
+        }
+    }
+    
+    
+    /* Style pour le titre */
+    .title-container {
+    text-align: left;
+    margin: 10px 0; /* Adjust margins as needed */
+   
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-left: 80px;
+    margin-top: 20px;
+}
+
+
+    
+/* Style pour le paginateur */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination-container .pagination {
+    display: inline-flex;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination-container .pagination li {
+    margin-right: 5px; /* Espacement entre les éléments du paginateur */
+}
+
+.pagination-container .pagination li a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.pagination-container .pagination li a:hover {
+    background-color: #ddd;
+}
+
+.pagination-container .pagination .active a {
+    background-color: #4CAF50;
+    color: white;
+}
+

@@ -1,4 +1,4 @@
-@extends('layout.layout')
+@extends('admin.layout')
 
 @section('content')
     <h1>Test (page d'accueil)</h1>

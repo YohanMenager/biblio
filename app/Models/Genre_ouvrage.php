@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Genre_ouvrage extends Model
 {
-    protected $table='ouvrage_genres';
+    protected $table='genre_ouvrages';
     protected $primaryKey='id_genreouvrage';
     public $timestamps = false;
     //public $incrementing = false;

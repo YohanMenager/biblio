@@ -12,7 +12,8 @@ class Type_abonnementController extends Controller
      */
     public function index()
     {
-        //
+        $type_abonnements = Type_abonnement::all();
+        return view('admin.type_abonnements.index', compact('type_abonnements'));
     }
 
     /**
@@ -20,7 +21,7 @@ class Type_abonnementController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.type_abonnements.create');
     }
 
     /**
@@ -28,7 +29,13 @@ class Type_abonnementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nom' => 'required|max:255',
+            'prix' => 'required|max:255'
+        ]);
+        Type_abonnement::create($request->all());
+        return redirect()->route('type_abonnements.create')
+        ->with('success', 'Type Abonnement created successfully.');
     }
 
     /**
@@ -36,7 +43,7 @@ class Type_abonnementController extends Controller
      */
     public function show(Type_abonnement $type_abonnement)
     {
-        //
+        return view('type_abonnements.show', compact('type_abonnement'));
     }
 
     /**
@@ -44,7 +51,7 @@ class Type_abonnementController extends Controller
      */
     public function edit(Type_abonnement $type_abonnement)
     {
-        //
+        return view('admin.type_abonnements.edit', compact('type_abonnement'));
     }
 
     /**
@@ -52,7 +59,14 @@ class Type_abonnementController extends Controller
      */
     public function update(Request $request, Type_abonnement $type_abonnement)
     {
-        //
+        $request->validate([
+            'nom' => 'required|max:255',
+            'prix' => 'required|max:255'
+        ]);
+
+        $type_abonnement->update($request->all());
+        return redirect()->route('type_abonnements.index')
+        ->with('success', 'Type Abonnement updated successfully.');
     }
 
     /**
@@ -60,6 +74,8 @@ class Type_abonnementController extends Controller
      */
     public function destroy(Type_abonnement $type_abonnement)
     {
-        //
+        $type_abonnement->delete();
+        return redirect()->route('type_abonnements.index')
+          ->with('success', 'Type Abonnement deleted successfully');
     }
 }

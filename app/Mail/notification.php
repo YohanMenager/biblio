@@ -13,12 +13,16 @@ class notification extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private string $user;
+    private string $ouvrage;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($unUser, $unOuvrage)
     {
-        //
+        $this->user=$unUser;
+        $this->ouvrage=$unOuvrage;
     }
 
     /**
@@ -27,7 +31,7 @@ class notification extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Notification',
+            subject: 'Votre livre est prêt',
         );
     }
 
@@ -49,5 +53,25 @@ class notification extends Mailable
     public function attachments(): array
     {
         return [];
+    }
+
+
+    /**
+
+     * Build the message.
+
+     *
+
+     * @return $this
+
+     */
+
+     public function build()
+    {
+        return $this->view('admin.reservations.mail')
+                    ->with([
+                        'user' => $this->user,
+                        'ouvrage' => $this->ouvrage,
+                    ]);
     }
 }

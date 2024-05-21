@@ -13,6 +13,6 @@ class formCreateReservationController extends Controller
     {
         $users = Utilisateur::all();
         $ouvrages = Ouvrage::all();
-        return view ("Reservations/formCreateReservation", compact("users"), compact("ouvrages"));       
+        return view ("admin.Reservations.formCreateReservation", compact("users"), compact("ouvrages"));
     }
 }
